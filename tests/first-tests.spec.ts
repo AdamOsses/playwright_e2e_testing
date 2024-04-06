@@ -10,13 +10,14 @@ test.describe('First tests: ', () => {
         await expect(page).toHaveTitle('PrestaShop Live Demo')
     })
 
-    test('should open top menu categories', async ({ page }) => {
-        //tbd \/
+    test('should open top menu categories', async ({ page }) => {        
         await page.frameLocator('iframe[name="framelive"]').getByRole('link', { name: 'Clothes' }).click();
-        await page.frameLocator('iframe[name="framelive"]').getByRole('heading', { name: 'Clothes' }).click();
+        await expect.soft(page.frameLocator('iframe[name="framelive"]').getByRole('heading', { name: 'Clothes' })).toBeVisible();
+
         await page.frameLocator('iframe[name="framelive"]').getByRole('link', { name: 'Accessories', exact: true }).click();
-        await page.frameLocator('iframe[name="framelive"]').getByRole('heading', { name: 'Accessories', exact: true }).click();
+        await expect.soft(page.frameLocator('iframe[name="framelive"]').getByRole('heading', { name: 'Accessories', exact: true })).toBeVisible();
+
         await page.frameLocator('iframe[name="framelive"]').getByRole('link', { name: 'Art' }).click();
-        await page.frameLocator('iframe[name="framelive"]').getByRole('heading', { name: 'Art' }).click();
+        await expect(page.frameLocator('iframe[name="framelive"]').getByRole('heading', { name: 'Art' })).toBeVisible();
     })
 })
